@@ -1,2 +1,2 @@
-# The-Office
-Management System using firebase
+# Osifi
+Basic Management using Firebase &amp; Vanilla Js
