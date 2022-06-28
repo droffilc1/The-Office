@@ -7,7 +7,7 @@
 .mainSec{
     height: 100vh;
     width: 100%;
-    background-image: url(../Images/pexels-jep-gambardella-7689856.jpg);
+    background-image: url(../Images/pexels-jopwell-2422290.jpg);
     background-size: cover;
     position: relative;
     
@@ -66,11 +66,11 @@
 
 .sideNav{
     background-color: #e3f2fd;
-    height: 94vh;
+    height: 110vh;
     width: 20%;
     padding-top: 50px;
     padding-left: 50px;
-    padding-right: 50px;
+    padding-right: 50px;    
 }
 
 

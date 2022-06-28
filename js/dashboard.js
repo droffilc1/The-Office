@@ -6,7 +6,7 @@ const myChart = new Chart(ctx, {
         datasets: [
         {
             label: 'Income',
-            data: [20000, 14000, 30000, 15000, 21000, 30000, 10000, 21000, 13000, 40000, 30000, 52000, 34000],
+            data: [20000, 30000, 50000],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -28,7 +28,7 @@ const myChart = new Chart(ctx, {
 
         {
             label: 'Expense',
-            data: [10000, 4000, 14000, 10000, 17000, 18000, 10000, 31000, 17000, 20000, 20000, 32000, 30000],
+            data: [10000, 10000],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -58,3 +58,99 @@ const myChart = new Chart(ctx, {
         }
     }
 });
+
+//calculate income today
+firebase.firestore().collection("income").get().then((querySnapshot)=>{
+    let income = 0;
+    querySnapshot.forEach((doc)=>{
+
+        let incomeAmount = doc.data().inAmount;
+        let incomeDate =  doc.data().incDate;
+        let conAmou = parseInt(incomeAmount)
+
+
+        //getting todays date
+        let todaysDate = new Date();
+        let thisYear = todaysDate.getFullYear();
+        let thisMonth = todaysDate.getMonth();
+
+        thisMonth = thisMonth + 1;
+
+        if(thisMonth < 10){
+        
+            thisMonth = "0" + thisMonth
+        }
+
+        let thisDate = todaysDate.getDate();
+        let todaysFullDate = thisYear + "-" +  thisMonth + "-" + thisDate;
+
+
+
+        //splitting time from date
+        let splitDate = incomeDate.split("T");
+        let firstIndex = splitDate[0]
+
+
+            if(todaysFullDate == firstIndex){
+
+            income = conAmou + income;
+
+        }
+
+
+
+    })
+
+    function toCommas(value){
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    document.getElementById("todaysIncome").innerText = "KES." + toCommas(income);
+})
+
+
+//calculate expense
+firebase.firestore().collection("expense").get().then((querySnapshot)=>{
+    let expense = 0;
+    querySnapshot.forEach((doc)=>{
+        let theExpense = doc.data().exAmount;
+        let conExpense= parseInt(theExpense);
+        let exDate =  doc.data().exDate;
+
+        expense += conExpense;
+
+        //getting todays date
+        let todaysDate = new Date();
+        let thisYear = todaysDate.getFullYear();
+        let thisMonth = todaysDate.getMonth();
+
+        thisMonth = thisMonth + 1;
+
+        if(thisMonth < 10){
+        
+            thisMonth = "0" + thisMonth
+        }
+
+        let thisDate = todaysDate.getDate();
+        let todaysFullDate = thisYear + "-" +  thisMonth + "-" + thisDate;
+
+        //splitting time from date
+        let splitDate = exDate.split("T");
+        let firstIndex = splitDate[0]
+
+
+            if(todaysFullDate == firstIndex){
+
+            expense = conExpense + expense;
+
+        }
+
+
+    })
+
+    function toCommas(value){
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    document.getElementById("todaysExpense").innerText = "KES." + toCommas(expense);    
+})
