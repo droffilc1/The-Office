@@ -156,51 +156,95 @@ firebase.firestore().collection("expense").get().then((querySnapshot)=>{
 
 // monthly income
 
-ffirebase.firestore().collection("income").get().then((querySnapshot)=>{
-    let income = 0;
-    querySnapshot.forEach((doc)=>{
+// firebase.firestore.collection("income").get().then((querySnapshot) => {
+// 	let data = ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep','Oct', 'Nov', 'Dec'];
+    
 
-        let incomeAmount = doc.data().inAmount;
-        let incomeDate =  doc.data().incDate;
-        let conAmou = parseInt(incomeAmount)
+// 	querySnapshot.forEach((doc){
+	
+// 		var amount = doc.data().amount;
+// 		var  date = doc.data().date;
 
 
-        //getting todays date
-        let todaysDate = new Date();
-        let thisYear = todaysDate.getFullYear();
-        let thisMonth = todaysDate.getMonth();
+// 		//2022-06-28
+	
+// 		var splitDate = date.split("");
+// 		var date = splitDate[1];
 
-        thisMonth = thisMonth + 1;
 
-        if(thisMonth < 10){
         
-            thisMonth = "0" + thisMonth
-        }
 
-        let thisDate = todaysDate.getDate();
-        let todaysFullDate = thisYear + "-" +  thisMonth + "-" + thisDate;
+// 		//find data in Jan
 
-
-
-        //splitting time from date
-        let splitDate = incomeDate.split("T");
-        let firstIndex = splitDate[0]
+// 		if(month == 01){
+		
+// 		Jan = parseInt(amount);
 
 
-            if(todaysFullDate == firstIndex){
+// 		}
 
-            
-
-        }
-
-        income = conAmou + income;
+// 		if(month == 02){
+		
+// 		Feb = parseInt(amount);
 
 
-    })
+// 		}
 
-    function toCommas(value){
-        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+// 		if(month == 03){
+		
+// 		March = parseInt(amount);
 
-    document.getElementById("monthIncome").innerText = "KES." + toCommas(income);
-})
+
+// 		}	
+//         if(month == 04){
+		
+//             Apr = parseInt(amount);
+    
+    
+//         }	
+
+//         if(month == 05){
+		
+//             May = parseInt(amount);
+    
+    
+//         }	
+
+
+//         if(month == 06){
+    
+//             June = parseInt(amount);
+    
+    
+//         }	
+
+//         if(month == 07){
+
+//             July = parseInt(amount);
+    
+    
+//         }	
+
+
+
+//         if(month == 08){
+
+//             Aug = parseInt(amount);
+    
+    
+//             }	    
+	
+
+
+
+	
+//     })
+
+//     function toCommas(value){
+//         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//     }
+	
+//     document.getElementById("monthIncome").innerText = "KES." + toCommas(income);
+
+//     data();
+// })
