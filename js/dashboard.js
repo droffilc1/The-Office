@@ -91,9 +91,9 @@ firebase.firestore().collection("income").get().then((querySnapshot)=>{
         let firstIndex = splitDate[0]
 
 
-            if(todaysFullDate == firstIndex){
+        if(todaysFullDate == firstIndex){
 
-            income = conAmou + income;
+        income = conAmou + income;
 
         }
 
@@ -156,95 +156,87 @@ firebase.firestore().collection("expense").get().then((querySnapshot)=>{
 
 // monthly income
 
-// firebase.firestore.collection("income").get().then((querySnapshot) => {
-// 	let data = ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep','Oct', 'Nov', 'Dec'];
+firebase.firestore().collection("income").get().then((querySnapshot) => {
+	let data = ['Jan', 'Feb', 'March', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep','Oct', 'Nov', 'Dec']; 
     
-
-// 	querySnapshot.forEach((doc){
+    
+	querySnapshot.forEach((doc) => {
 	
-// 		var amount = doc.data().amount;
-// 		var  date = doc.data().date;
+		var amount = doc.data().amount;
+		var  date = doc.data().date;
 
-
-// 		//2022-06-28
+		//2022-06-28
 	
-// 		var splitDate = date.split("");
-// 		var date = splitDate[1];
+		let splitDate = date.split(" ");
+		date = splitDate[1];        
 
+		//find data in Jan
 
-        
-
-// 		//find data in Jan
-
-// 		if(month == 01){
+		if(month == 01){
 		
-// 		Jan = parseInt(amount);
+		Jan = parseInt(amount);
+		}
 
-
-// 		}
-
-// 		if(month == 02){
+		if(month == 02){
 		
-// 		Feb = parseInt(amount);
+		Feb = parseInt(amount);
 
+		}
 
-// 		}
-
-// 		if(month == 03){
+		if(month == 03){
 		
-// 		March = parseInt(amount);
+		March = parseInt(amount);
 
-
-// 		}	
-//         if(month == 04){
+		}	
+        if(month == 04){
 		
-//             Apr = parseInt(amount);
+            Apr = parseInt(amount);    
     
-    
-//         }	
+        }	
 
-//         if(month == 05){
+        if(month == 05){
 		
-//             May = parseInt(amount);
+            May = parseInt(amount);
     
     
-//         }	
+        }	
 
 
-//         if(month == 06){
+        if(month == 06){
     
-//             June = parseInt(amount);
+            June = parseInt(amount);
     
     
-//         }	
+        }	
 
-//         if(month == 07){
+        if(month == 07){
 
-//             July = parseInt(amount);
+            July = parseInt(amount);
     
     
-//         }	
+        }	
 
 
 
-//         if(month == 08){
+        if(month == 08){
 
-//             Aug = parseInt(amount);
+            Aug = parseInt(amount);
     
     
-//             }	    
+            }	    
 	
 
 
 
 	
-//     })
+    })
 
-//     function toCommas(value){
-//         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-//     }
+    function toCommas(value){
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 	
-//     document.getElementById("monthIncome").innerText = "KES." + toCommas(income);
+    data();
 
-//     data();
-// })
+    document.getElementById("monthIncome").innerText = "KES." + toCommas(income);
+    
+})
