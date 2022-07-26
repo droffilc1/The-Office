@@ -190,7 +190,7 @@ firebase.firestore().collection("income").get().then((querySnapshot) => {
 		}	
         if(month == 04){
 		
-            Apr = parseInt(amount);    
+            April = parseInt(amount);    
     
         }	
 
@@ -223,7 +223,12 @@ firebase.firestore().collection("income").get().then((querySnapshot) => {
             Aug = parseInt(amount);
     
     
-            }	    
+            }	   
+
+
+         if(month == 09) {
+          Sept = parseInt(amount)
+          } 
 	
 
 
